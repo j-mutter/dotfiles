@@ -1,7 +1,62 @@
-. ~/.zsh/aliases
+# cd
+alias ..='cd ..'
 
-# changing directory to project
-function ws { cd ~/development/workspace/$1*; }
+# ls
+alias ls="ls -GF"
+alias l="ls -lAh"
+alias ll="ls -l"
+alias la='ls -A'
 
-# misc
+# git
+alias gl='git pull --rebase --stat'
+alias ga='git add'
+alias gp='git push'
+alias gd='git diff'
+alias gc='git commit -m'
+alias gca='git commit -a'
+alias gco='git checkout'
+alias gb='git branch'
+alias gs='git status'
+alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias changelog='git log `git log -1 --format=%H -- CHANGELOG*`..; cat CHANGELOG*'
+alias gitpurge='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+
+# rails
+alias rc='rails console'
+alias rs='rails server'
+alias rg='rails generate'
+alias tlog='tail -f log/development.log'
+alias scaffold='script/generate nifty_scaffold'
+alias migrate='rake db:migrate db:test:clone'
+alias bx='bundle exec'
+alias bi='bundle check || bundle install --jobs 4'
+
+alias railsflush='redis-cli -p 6379 flushall && echo "flush_all" | nc 127.0.0.1 11211'
+alias railsnuke='git pull && bi && railsflush && bx rake db:drop && bx rake db:setup && bx rake db:migrate'
+
+# Vagrant
+export SHOPIFY_VAGRANT_DIR="$HOME/Projects/Shopify/vagrant"
+alias vag='echo $SHOPIFY_VAGRANT_DIR'
+alias vcd='cd `vag`'
+alias vssh='vcd && vagrant ssh'
+alias vup="vcd && vagrant up"
+alias vpro='vcd && git pull origin master && vagrant provision'
+
+# other
+alias rsync="rsync --progress"
+alias rt="ruby -Itest"
+alias tmux="TERM=screen-256color-bce tmux -2"
 alias reload='. ~/.bash_profile'
+
+# commands starting with % for pasting from web
+alias %=' '
+
+# todo
+export TODOTXT_DEFAULT_ACTION=ls
+export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
+alias t='todo.sh -c -d ~/Dropbox/todo/todo.cfg'
+
+# ssh
+alias phone-home='ssh home'
+alias phone-home-proxy='ssh -D 9876 home'
+alias ssh-screenshare='ssh -L*:5901:localhost:5900 home'

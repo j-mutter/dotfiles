@@ -1,1 +1,13 @@
 export EDITOR="vim"
+export TERM="xterm-256color"
+
+export HISTCONTROL=ignoreboth
+export HISTIGNORE="ls:pwd"
+export HISTSIZE=1000
+export CLICOLOR=1
+
+if which rbenv > /dev/null; then
+  eval "$(rbenv init -)"
+  export RBENV_ROOT=/usr/local/var/rbenv
+  export PATH="$RBENV_ROOT/shims:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:$PATH"
+fi
