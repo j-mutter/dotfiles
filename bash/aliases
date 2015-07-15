@@ -30,6 +30,7 @@ alias scaffold='script/generate nifty_scaffold'
 alias migrate='rake db:migrate db:test:clone'
 alias bx='bundle exec'
 alias bi='bundle check || bundle install --jobs 4'
+alias bxst='bx spring testunit'
 
 alias railsflush='redis-cli -p 6379 flushall && echo "flush_all" | nc 127.0.0.1 11211'
 alias railsnuke='git pull && bi && railsflush && bx rake db:drop && bx rake db:setup && bx rake db:migrate'
