@@ -38,7 +38,7 @@ alias railsnuke='git pull && bi && railsflush && bx rake db:drop && bx rake db:s
 # Vagrant
 export SHOPIFY_VAGRANT_DIR="$HOME/Projects/Shopify/vagrant"
 alias vag='echo $SHOPIFY_VAGRANT_DIR'
-alias vcd='cd `vag`'
+alias cdv='cd `vag`'
 alias vssh='vcd && vagrant ssh'
 alias vup="vcd && vagrant up"
 alias vpro='vcd && git pull origin master && vagrant provision'
